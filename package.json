@@ -1,0 +1,27 @@
+{
+  "name": "genetix",
+  "version": "1.0.0",
+  "description": "A simple lib to test genetic algorithms",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jsmrcaga/genetics.git"
+  },
+  "keywords": [
+    "genetic",
+    "algorithm"
+  ],
+  "author": "Jo Colina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsmrcaga/genetics/issues"
+  },
+  "homepage": "https://github.com/jsmrcaga/genetics#readme"
+}
