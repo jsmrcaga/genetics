@@ -9,6 +9,9 @@ class Gene {
 	}
 
 	value(){
+		if(this.__value instanceof Function){
+			return this.__value();
+		}
 		return this.__value;
 	}
 }

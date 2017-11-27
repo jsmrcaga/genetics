@@ -3,6 +3,10 @@ const Genome = require('./genome');
 
 class Population {
 	constructor(generators, fitness, crossover, params={mutation_rate:0.05, maxpop:100}, pop){
+		if(!generators || !fitness){
+			throw new Error('Fitness and generators needed to create population');
+		}
+		
 		this.__max_pop = params.maxpop || 1000;
 		this.__gens = generators;
 		this.__mutation = params.mutation_rate || 0.1;
