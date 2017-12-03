@@ -27,7 +27,7 @@ class Population {
 
 	init(){
 		for(let i of new Array(this.__max_pop)){
-			this.population.push(new Genome([], this.__fitness, this.__crossover).init(this.__gens))
+			this.population.push(new Genome([], this.__fitness, this.__crossover, this.__mutation).init(this.__gens))
 		}
 	}
 
@@ -92,6 +92,7 @@ class Population {
 	auto(pheno=null, target, max_gens=1000, callback){
 		let generation = -1;
 		let max_fitness = 0;
+		let best_fit = null;
 
 		let current_pop = this;
 
@@ -105,13 +106,16 @@ class Population {
 				return a.fitness - b.fitness;
 			});
 
-			max_fitness = fitted.last().fitness;
+			if(fitted.last().fitness > max_fitness){
+				 max_fitness = fitted.last().fitness;
+				 best_fit = fitted.last();
+			}
 			let final_genome = current_pop.population.sort((a,b)=>a.fitness-b.fitness).last();
 
 			if(!pheno){
 				if(max_fitness >= target){
 					return {
-						phenotype: final_genome.pheno(pheno),
+						phenotype: final_genome.pheno(function(){}),
 						genome: final_genome,
 						population: current_pop,
 						max_fitness: max_fitness,
@@ -122,28 +126,30 @@ class Population {
 			} else {
 				for(let g of fitted){
 
-					let gph = g.pheno(pheno);
+					let gph = g.pheno(pheno || function(){});
 
 					if(target instanceof Object){
 						let comp = target.compare(gph);
 						if(comp === true || comp === target.target){
 							return {
-								phenotype: final_genome.pheno(pheno),
+								phenotype: final_genome.pheno(pheno || function(){}),
 								genome: final_genome,
 								population: current_pop,
 								max_fitness: max_fitness,
-								generation: generation
+								generation: generation,
+								best_fit: best_fit
 							};
 						}
 
 					} else {
 						if(gph === target){
 							return {
-								phenotype: final_genome.pheno(pheno),
+								phenotype: final_genome.pheno(pheno || function(){}),
 								genome: final_genome,
 								population: current_pop,
 								max_fitness: max_fitness,
-								generation: generation
+								generation: generation,
+								best_fit: best_fit
 							};
 						}
 					}
@@ -162,11 +168,12 @@ class Population {
 		current_pop.fit();
 		let final = current_pop.population.sort((a,b)=>a.fitness-b.fitness).last();
 		return {
-			phenotype: final.pheno(pheno),
+			phenotype: final.pheno(pheno || function(){}),
 			genome: final,
 			population: current_pop,
 			max_fitness: max_fitness,
-			generation: generation
+			generation: generation,
+			best_fit: best_fit
 		};
 	}
 }

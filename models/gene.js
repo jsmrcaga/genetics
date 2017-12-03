@@ -16,4 +16,10 @@ class Gene {
 	}
 }
 
+Gene.values = function(genes){
+	return genes.map(e => {
+		return e.value();
+	});
+};
+
 module.exports = Gene;

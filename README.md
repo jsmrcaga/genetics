@@ -26,7 +26,7 @@ Example:
 let Genetics = require('genetix');
 
 // Create generator function
-let generator = function(){
+let generator = function(current_genes){
 	let int = Math.floor(Math.random() * 30) + 1;
 	return new Genetics.Gene(int);
 }
@@ -69,7 +69,7 @@ The population class is defined as
 
 | Param | Required | Type | Description |
 |:-:|:-:|:-:|:-:|
-|`generators` | true | Array of functions | Generators is an array of functions that return `new Gene(val)` | 
+|`generators` | true | Array of functions | Generators is an array of functions that return `new Gene(val)`, they take `current_genes[]` (with `Gene`s) as argument | 
 | `fitness` | true | Fitness function | Returns number, takes array of `Gene`s as only argument | 
 | `crossover` | false | Crossover function  | Returns list of new `Gene`s, takes `(parent1_genes, parent2_genes, generators, mutation_rate)`|
 | `params` | false | Params Object | Contains `{mutation_rate:0.05, maxpop:100}` |

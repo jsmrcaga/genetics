@@ -12,7 +12,7 @@ class Genome {
 	init(gens){
 		this.genes = [];
 		for(let i of gens){
-			this.genes.push(i());
+			this.genes.push(i(this.genes));
 		}
 		return this;
 	}
