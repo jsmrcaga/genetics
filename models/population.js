@@ -137,7 +137,8 @@ class Population {
 								population: current_pop,
 								max_fitness: max_fitness,
 								generation: generation,
-								best_fit: best_fit
+								best_fit: best_fit,
+								exact: true
 							};
 						}
 
@@ -149,7 +150,8 @@ class Population {
 								population: current_pop,
 								max_fitness: max_fitness,
 								generation: generation,
-								best_fit: best_fit
+								best_fit: best_fit,
+								exact: true
 							};
 						}
 					}
@@ -173,7 +175,8 @@ class Population {
 			population: current_pop,
 			max_fitness: max_fitness,
 			generation: generation,
-			best_fit: best_fit
+			best_fit: best_fit,
+			exact:false
 		};
 	}
 }
