@@ -1,6 +1,8 @@
 # Genetix
 A simple library to test genetic algorithms
 
+[![Build Status](https://travis-ci.com/jsmrcaga/genetics.svg?branch=master)](https://travis-ci.com/jsmrcaga/genetics)
+
 ## Installation
 `npm install -S genetix`
 

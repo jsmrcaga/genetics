@@ -26,6 +26,7 @@ let last_gen = pop.auto(function(genes){
 }, 30, 1000);
 
 console.log('Generations needed to hit target', last_gen.generation);
+console.log('In', last_gen.time, 'milliseconds');
 console.log('Maximum fitness was', last_gen.max_fitness);
 console.log('The phenotype was', last_gen.phenotype);
 console.log('With a genome', last_gen.genome);

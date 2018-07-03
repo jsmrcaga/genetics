@@ -100,6 +100,8 @@ class Population {
 			callback = function(){};
 		}
 
+		let then = Date.now();
+
 		for(let i of new Array(max_gens)){
 			generation++;
 			let fitted = current_pop.fit().sort((a, b) => {
@@ -119,7 +121,9 @@ class Population {
 						genome: final_genome,
 						population: current_pop,
 						max_fitness: max_fitness,
-						generation: generation
+						generation: generation,
+						time: Date.now() - then,
+						exact: false
 					};
 				}
 
@@ -138,7 +142,8 @@ class Population {
 								max_fitness: max_fitness,
 								generation: generation,
 								best_fit: best_fit,
-								exact: true
+								exact: true,
+								time: Date.now() - then
 							};
 						}
 
@@ -151,7 +156,8 @@ class Population {
 								max_fitness: max_fitness,
 								generation: generation,
 								best_fit: best_fit,
-								exact: true
+								exact: true,
+								time: Date.now() - then
 							};
 						}
 					}
@@ -176,7 +182,8 @@ class Population {
 			max_fitness: max_fitness,
 			generation: generation,
 			best_fit: best_fit,
-			exact:false
+			exact:false,
+			time: Date.now() - then
 		};
 	}
 }
