@@ -1,3 +1,21 @@
 language: node_js
+
 node_js:
   - "10"
+
+branches:
+  only:
+    - master
+    - /v\d+.\d+(\.d+)?(-[a-zA-Z0-9]+)?/
+
+before_deploy:
+  - npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+
+deploy:
+  provider: script
+  script: npm publish
+  on:
+    tags: true
+
+git:
+  depth: 2
